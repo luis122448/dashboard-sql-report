@@ -1,0 +1,31 @@
+<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+  <h3 class="text-lg font-medium text-gray-900 dark:text-white">Weekly Execution History</h3>
+  <div class="overflow-x-auto mt-4">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Report Name</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+          <th scope="col" class="px-6 py-3">Timestamp</th>
+          <th scope="col" class="px-6 py-3">Duration (ms)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let execution of executionHistory" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">{{ execution.report_name }}</td>
+          <td class="px-6 py-4">
+            <span [ngClass]="{
+              'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300': execution.status === 'success',
+              'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300': execution.status === 'failed'
+            }" class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{{ execution.status }}</span>
+          </td>
+          <td class="px-6 py-4">{{ execution.timestamp | date:'medium' }}</td>
+          <td class="px-6 py-4">{{ execution.duration_ms }}</td>
+        </tr>
+        <tr *ngIf="!executionHistory || executionHistory.length === 0">
+          <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No data available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
