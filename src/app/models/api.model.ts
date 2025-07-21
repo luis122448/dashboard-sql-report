@@ -22,8 +22,9 @@ export interface ExecutionHistory {
     event_type: string;
     timestamp: string;
     message: string;
-    duration_ms: number;
-    status: string;
+    last_execution_duration_ms: number;
+    last_execution_status: string;
+    last_execution_time: string
 }
 
 export interface TopReport {
