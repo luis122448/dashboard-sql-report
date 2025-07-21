@@ -26,19 +26,19 @@
 }
 @keyframes changeBackground {
   0% {
-    background-image: url("/assets/image/wallpaper/dota-1.webp");
+    background-image: url("/assets/background.png");
   }
   25% {
-    background-image: url("/assets/image/wallpaper/dota-1.webp");
+    background-image: url("/assets/background.png");
   }
   50% {
-    background-image: url("/assets/image/wallpaper/dota-1.webp");
+    background-image: url("/assets/background.png");
   }
   75% {
-    background-image: url("/assets/image/wallpaper/dota-1.webp");
+    background-image: url("/assets/background.png");
   }
   100% {
-    background-image: url("/assets/image/wallpaper/dota-1.webp");
+    background-image: url("/assets/background.png");
   }
 }
 .animated-bg {
