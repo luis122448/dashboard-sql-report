@@ -1,14 +1,39 @@
-<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-6 py-4">
-  <h3 class="text-lg font-medium text-gray-900 dark:text-white">Total Scheduled Reports</h3>
-  <p *ngIf="totalReports !== null" class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{{ totalReports }}</p>
-  <p *ngIf="totalReports === null" class="mt-2 text-gray-500 dark:text-gray-400">Loading...</p>
+<div
+  class="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+>
+  <h5
+    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+  >
+    <span
+      role="status"
+      class="hidden sm:inline text-sky-600 dark:text-sky-500 font-bold"
+      >{{ totalReports }}</span
+    >
+    Total Scheduled Reports
+  </h5>
+  <p
+    *ngIf="totalReports === null"
+    class="font-normal text-gray-700 dark:text-gray-400"
+  >
+    Loading...
+  </p>
 
   <div *ngIf="companyDetails && companyDetails.length > 0" class="mt-4">
-    <h4 class="text-md font-medium text-gray-900 dark:text-white">Reports by Company:</h4>
-    <ul class="mt-2 space-y-1">
-      <li *ngFor="let company of companyDetails" class="text-gray-700 dark:text-gray-300">
-        {{ company.company_name }} (ID: {{ company.id_cia }}): {{ company.num_reports }} reports
-      </li>
-    </ul>
+    <label
+      for="company-select"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Filter by Company:</label
+    >
+    <select
+      id="company-select"
+      [(ngModel)]="selectedCompanyId"
+      (change)="onCompanyChange($event)"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option [ngValue]="null">All Companies</option>
+      <option *ngFor="let company of companyDetails" [ngValue]="company.id_cia">
+        {{ company.company_name }} ({{ company.num_reports }} reports)
+      </option>
+    </select>
   </div>
 </div>
