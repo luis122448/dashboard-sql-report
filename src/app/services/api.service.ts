@@ -24,4 +24,4 @@ export class ApiService {
   getTopReports(): Observable<ApiResponse<TopReport>> {
     return this.http.get<ApiResponse<TopReport>>(`${this.baseUrl}/usage/summary/top-reports`);
   }
-}
+}``
