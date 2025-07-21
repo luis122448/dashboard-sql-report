@@ -1,4 +1,10 @@
-export interface ApiResponse<T> {
+export interface ApiResponseObject<T> {
+    status: number;
+    message: string;
+    object: T;
+}
+
+export interface ApiResponseList<T> {
     status: number;
     message: string;
     list: T[];
@@ -33,4 +39,10 @@ export interface TopReport {
     request_count: number;
     unique_ips: number;
     avg_processing_time_ms: number;
+}
+
+export interface CompanyStatus {
+    company_name: string;
+    id_cia: number;
+    num_reports: number;
 }

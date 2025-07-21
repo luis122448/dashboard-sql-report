@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { CompanyStatus } from '../../models/api.model';
 
 @Component({
   selector: 'app-total-scheduled-card',
@@ -12,12 +13,14 @@ import { CommonModule } from '@angular/common';
 export class TotalScheduledCardComponent implements OnInit {
 
   totalReports: number | null = null;
+  companyDetails: CompanyStatus[] | null = null;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getTotalScheduledReports().subscribe(response => {
-      this.totalReports = response.list.length;
+    this.apiService.getReportStatus().subscribe(response => {
+      this.companyDetails = response.list;
+      this.totalReports = this.companyDetails.reduce((sum, company) => sum + company.num_reports, 0);
     });
   }
 

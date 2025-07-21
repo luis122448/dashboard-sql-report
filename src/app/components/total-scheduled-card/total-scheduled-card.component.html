@@ -2,4 +2,13 @@
   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Total Scheduled Reports</h3>
   <p *ngIf="totalReports !== null" class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{{ totalReports }}</p>
   <p *ngIf="totalReports === null" class="mt-2 text-gray-500 dark:text-gray-400">Loading...</p>
+
+  <div *ngIf="companyDetails && companyDetails.length > 0" class="mt-4">
+    <h4 class="text-md font-medium text-gray-900 dark:text-white">Reports by Company:</h4>
+    <ul class="mt-2 space-y-1">
+      <li *ngFor="let company of companyDetails" class="text-gray-700 dark:text-gray-300">
+        {{ company.company_name }} (ID: {{ company.id_cia }}): {{ company.num_reports }} reports
+      </li>
+    </ul>
+  </div>
 </div>
