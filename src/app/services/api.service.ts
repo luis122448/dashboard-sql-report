@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 import { ApiResponseList, ScheduledReport, ExecutionHistory, TopReport, CompanyStatus } from '../models/api.model';
 
 @Injectable({
@@ -9,24 +9,24 @@ import { ApiResponseList, ScheduledReport, ExecutionHistory, TopReport, CompanyS
 })
 export class ApiService {
 
-  private baseUrl = 'http://localhost:8001/api'; // Adjust if your backend URL is different
+  API_URL = environment.API_URL + '/api';
 
   constructor(private http: HttpClient) { }
 
   getTotalScheduledReports(): Observable<ApiResponseList<ScheduledReport>> {
-    return this.http.get<ApiResponseList<ScheduledReport>>(`${this.baseUrl}/dashboard/total_scheduled_reports`);
+    return this.http.get<ApiResponseList<ScheduledReport>>(`${this.API_URL}/dashboard/total_scheduled_reports`);
   }
 
   getWeeklyExecutionDetails(): Observable<ApiResponseList<ExecutionHistory>> {
-    return this.http.get<ApiResponseList<ExecutionHistory>>(`${this.baseUrl}/dashboard/weekly_execution_details`);
+    return this.http.get<ApiResponseList<ExecutionHistory>>(`${this.API_URL}/dashboard/weekly_execution_details`);
   }
 
   getTopReports(): Observable<ApiResponseList<TopReport>> {
-    return this.http.get<ApiResponseList<TopReport>>(`${this.baseUrl}/usage/summary/top-reports`);
+    return this.http.get<ApiResponseList<TopReport>>(`${this.API_URL}/usage/summary/top-reports`);
   }
 
   getReportStatus(): Observable<ApiResponseList<CompanyStatus>> {
-    return this.http.get<ApiResponseList<CompanyStatus>>(`${this.baseUrl}/dashboard/status`);
+    return this.http.get<ApiResponseList<CompanyStatus>>(`${this.API_URL}/dashboard/status`);
   }
 
 }
