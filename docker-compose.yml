@@ -9,4 +9,4 @@ services:
       args:
         API_URL: $API_URL
     ports:
-      - "4203:80"
+      - "8002:80"
