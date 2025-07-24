@@ -17,10 +17,10 @@ COPY . .
 
 # Replace the API_URL placeholder in the environment file
 # Make sure the environment.ts file has a placeholder like [API_URL]
-RUN sed -i "s|\[API_URL\]|$API_URL|g" src/environments/environment.ts
+RUN sed -i "s|\[API_URL\]|$API_URL|g" src/environments/environment.prod.ts
 
 # Build the application for production
-RUN npm run build -- --configuration production
+RUN npm run build
 
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
