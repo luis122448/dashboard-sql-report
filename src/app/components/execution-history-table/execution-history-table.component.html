@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-2 py-2">
+<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-3 py-2">
   <h3 class="text-lg font-medium text-gray-900 dark:text-white">
     Last Execution History
   </h3>
@@ -8,13 +8,13 @@
         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       >
         <tr>
-          <th scope="col" class="px-2 py-3">Id Report</th>
+          <th scope="col" class="px-2 py-3">Id</th>
           <th scope="col" class="px-2 py-3">Report Name</th>
           <th scope="col" class="px-2 py-3">Schedule Type</th>
           <th scope="col" class="px-2 py-3">R. Time</th>
           <th scope="col" class="px-2 py-3">Last Status</th>
           <th scope="col" class="px-2 py-3">Duration (S)</th>
-          <th scope="col" class="px-2 py-3">Last Exec. Time</th>
+          <th scope="col" class="px-2 py-3">Last Exec.</th>
         </tr>
       </thead>
       <tbody>
@@ -73,7 +73,7 @@
             {{ execution.last_execution_duration_ms | miliSecondsConverter }}
           </td>
           <td class="px-2 py-2">
-            {{ execution.last_execution_time | date : "medium" }}
+            {{ execution.last_execution_time | subtractFiveHours | date : "short" }}
           </td>
         </tr>
         <tr *ngIf="!executionHistory || executionHistory.length === 0">

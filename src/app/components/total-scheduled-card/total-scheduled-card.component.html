@@ -48,7 +48,7 @@
         </div>
       </li>
       <li
-        *ngFor="let company of companyDetails"
+        *ngFor="let company of filteredCompanyDetails"
         class="py-3 sm:py-4 px-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
         (click)="onCompanySelected(company)"
         [ngClass]="{

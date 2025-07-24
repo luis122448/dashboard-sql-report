@@ -6,11 +6,12 @@ import { FilterService } from '../../services/filter.service';
 import { SecondsConverterPipe } from '../../pipe/seconds-converter.pipe';
 import { MinutesToHoursConverterPipe } from '../../pipe/minutes-to-hours-converter.pipe';
 import { MiliSecondsConverterPipe } from '../../pipe/mili-seconds-converter.pipe';
+import { SubtractFiveHoursPipe } from '../../pipe/subtract-five-hours.pipe';
 
 @Component({
   selector: 'app-execution-history-table',
   standalone: true,
-  imports: [CommonModule, SecondsConverterPipe, MinutesToHoursConverterPipe, MiliSecondsConverterPipe ],
+  imports: [CommonModule, MinutesToHoursConverterPipe, MiliSecondsConverterPipe, SubtractFiveHoursPipe ],
   templateUrl: './execution-history-table.component.html',
   styleUrls: ['./execution-history-table.component.css'],
 })
