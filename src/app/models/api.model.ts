@@ -21,16 +21,18 @@ export interface ScheduledReport {
 
 export interface ExecutionHistory {
     job_id: string;
-    report_id_cia: number;
-    report_id_report: number;
-    report_name: string;
-    report_company: string;
+    id_cia: number;
+    id_report: number;
+    name: string;
+    company: string;
     event_type: string;
     timestamp: string;
     message: string;
     last_execution_duration_ms: number;
     last_execution_status: string;
-    last_execution_time: string
+    last_execution_time: string;
+    refresh_time: number;
+    schedule_type: string;
 }
 
 export interface TopReport {

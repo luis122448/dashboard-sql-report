@@ -18,35 +18,68 @@
     Loading...
   </p>
 
-  <div *ngIf="companyDetails && companyDetails.length > 0" class="mt-4">
-    <label
-      for="company-select"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Filter by Company:</label
-    >
-    <li class="pb-3 sm:pb-4" *ngFor="let company of companyDetails">
-      <div class="flex items-center space-x-4 rtl:space-x-reverse">
-        <div class="shrink-0">
-          <img
-            class="w-8 h-8 rounded-full"
-            src="/assets/company.webp"
-            alt="Neil image"
-          />
+  <div *ngIf="companyDetails && companyDetails.length > 0" class="mt-4 flow-root">
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+      <li
+        class="py-3 sm:py-4 px-2 rounded-lg cursor-pointer"
+        (click)="onCompanySelected(null)"
+        [ngClass]="{
+          'bg-sky-100 dark:bg-sky-900': selectedCompanyId === null
+        }"
+      >
+        <div class="flex items-center">
+          <div class="shrink-0">
+            <img
+              class="w-8 h-8 rounded-full"
+              src="/assets/company.webp"
+              alt="All Companies"
+            />
+          </div>
+          <div class="flex-1 min-w-0 ms-4">
+            <p class="text-md font-bold text-gray-900 truncate dark:text-white">
+              All Companies
+            </p>
+          </div>
+          <div
+            class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+          >
+            {{ totalReports }} reports
+          </div>
         </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-            {{ company.company_name }}
-          </p>
-          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-            id_cia {{ company.id_cia }}
-          </p>
+      </li>
+      <li
+        *ngFor="let company of companyDetails"
+        class="py-3 sm:py-4 px-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+        (click)="onCompanySelected(company)"
+        [ngClass]="{
+          'bg-sky-100 dark:bg-sky-900': selectedCompanyId === company.id_cia
+        }"
+      >
+        <div class="flex items-center">
+          <div class="shrink-0">
+            <img
+              class="w-8 h-8 rounded-full"
+              src="/assets/company.webp"
+              alt="{{ company.company_name }} logo"
+            />
+          </div>
+          <div class="flex-1 min-w-0 ms-4">
+            <p
+              class="text-sm font-medium text-gray-900 truncate dark:text-white"
+            >
+              {{ company.company_name }}
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              id_cia {{ company.id_cia }}
+            </p>
+          </div>
+          <div
+            class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+          >
+            {{ company.num_reports }} reports
+          </div>
         </div>
-        <div
-          class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
-        >
-          {{ company.num_reports }} reports
-        </div>
-      </div>
-    </li>
+      </li>
+    </ul>
   </div>
 </div>

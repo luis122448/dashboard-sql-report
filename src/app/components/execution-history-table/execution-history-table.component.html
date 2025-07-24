@@ -1,20 +1,20 @@
-<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-4 py-4">
+<div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-2 py-2">
   <h3 class="text-lg font-medium text-gray-900 dark:text-white">
     Last Execution History
   </h3>
   <div class="overflow-x-auto mt-4 max-h-[600px]">
-    <table
-      class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
-    >
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead
         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       >
         <tr>
-          <th scope="col" class="px-2 py-3">Id Company</th>
-          <th scope="col" class="px-6 py-3">Report Name</th>
-          <th scope="col" class="px-6 py-3">Last Status</th>
-          <th scope="col" class="px-6 py-3">Last Exec. Time</th>
-          <th scope="col" class="px-6 py-3">Duration (ms)</th>
+          <th scope="col" class="px-2 py-3">Id Report</th>
+          <th scope="col" class="px-2 py-3">Report Name</th>
+          <th scope="col" class="px-2 py-3">Schedule Type</th>
+          <th scope="col" class="px-2 py-3">R. Time</th>
+          <th scope="col" class="px-2 py-3">Last Status</th>
+          <th scope="col" class="px-2 py-3">Duration (S)</th>
+          <th scope="col" class="px-2 py-3">Last Exec. Time</th>
         </tr>
       </thead>
       <tbody>
@@ -23,16 +23,38 @@
           class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
         >
           <td
-            class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+            class="px-2 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
           >
-            {{ execution.report_id_cia }}
+            {{ execution.id_report }}
           </td>
           <td
-            class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+            class="px-2 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
           >
-            {{ execution.report_id_report + ' - ' + execution.report_name }}
+            {{
+              execution.name.length > 40
+                ? (execution.name | slice : 0 : 40) + ".."
+                : execution.name
+            }}
           </td>
-          <td class="px-6 py-4">
+          <td class="px-2 py-2">
+            <span
+              [ngClass]="{
+                'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300':
+                  execution.schedule_type === 'Daily',
+                'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300':
+                  execution.schedule_type === 'Hourly',
+                'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300':
+                  execution.schedule_type === 'High-Frequency',
+                'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300':
+                  execution.schedule_type === null ||
+                  execution.schedule_type === ''
+              }"
+              class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
+              >{{ execution.schedule_type || "NOT FOUND" }}</span
+            >
+          </td>
+          <td class="px-2 py-2">{{ execution.refresh_time | minutesToHoursConverter }}</td>
+          <td class="px-2 py-2">
             <span
               [ngClass]="{
                 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300':
@@ -47,13 +69,17 @@
               >{{ execution.last_execution_status || "NOT FOUND" }}</span
             >
           </td>
-          <td class="px-6 py-4">{{ execution.last_execution_time | date : "medium" }}</td>
-          <td class="px-6 py-4">{{ execution.last_execution_duration_ms }}</td>
+          <td class="px-2 py-2">
+            {{ execution.last_execution_duration_ms | miliSecondsConverter }}
+          </td>
+          <td class="px-2 py-2">
+            {{ execution.last_execution_time | date : "medium" }}
+          </td>
         </tr>
         <tr *ngIf="!executionHistory || executionHistory.length === 0">
           <td
             colspan="4"
-            class="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+            class="px-2 py-2 text-center text-gray-500 dark:text-gray-400"
           >
             No data available
           </td>
