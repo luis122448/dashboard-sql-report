@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ExecutionHistory } from '../../models/api.model';
+import { LastExecutionHistory } from '../../models/api.model';
 import { CommonModule } from '@angular/common';
 import { FilterService } from '../../services/filter.service';
 import { SecondsConverterPipe } from '../../pipe/seconds-converter.pipe';
@@ -15,8 +15,8 @@ import { SubtractFiveHoursPipe } from '../../pipe/subtract-five-hours.pipe';
   templateUrl: './execution-history-table.component.html',
   styleUrls: ['./execution-history-table.component.css'],
 })
-export class ExecutionHistoryTableComponent implements OnInit {
-  executionHistory: ExecutionHistory[] = [];
+export class LastExecutionHistoryTableComponent implements OnInit {
+  LastExecutionHistory: LastExecutionHistory[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -26,9 +26,9 @@ export class ExecutionHistoryTableComponent implements OnInit {
   ngOnInit(): void {
     this.filterService.selectedCompanyId$.subscribe((id_cia) => {
       this.apiService
-        .getWeeklyExecutionDetails(id_cia)
+        .getLastExecutionDetails(id_cia)
         .subscribe((response) => {
-          this.executionHistory = response.list;
+          this.LastExecutionHistory = response.list;
         });
     });
   }

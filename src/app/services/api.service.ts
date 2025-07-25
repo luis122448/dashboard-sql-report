@@ -5,9 +5,10 @@ import { environment } from '../../environments/environment';
 import {
   ApiResponseList,
   ScheduledReport,
-  ExecutionHistory,
+  LastExecutionHistory,
   TopReport,
   CompanyStatus,
+  ExecutionReport,
 } from '../models/api.model';
 
 @Injectable({
@@ -24,15 +25,27 @@ export class ApiService {
     );
   }
 
-  getWeeklyExecutionDetails(
+  getLastExecutionDetails(
     id_cia: number | null
-  ): Observable<ApiResponseList<ExecutionHistory>> {
+  ): Observable<ApiResponseList<LastExecutionHistory>> {
     let params = new HttpParams();
     if (id_cia) {
       params = params.append('id_cia', id_cia);
     }
-    return this.http.get<ApiResponseList<ExecutionHistory>>(
-      `${this.BASE_URL}/dashboard/weekly_execution_details`,
+    return this.http.get<ApiResponseList<LastExecutionHistory>>(
+      `${this.BASE_URL}/dashboard/last_execution_details`,
+      { params }
+    );
+  }
+
+  getExecutionsByReport(id_cia: number, id_report: number): Observable<ApiResponseList<ExecutionReport>> {
+    let params = new HttpParams();
+    if (id_cia) {
+      params = params.append('id_cia', id_cia);
+      params = params.append('id_report', id_report);
+    }
+    return this.http.get<ApiResponseList<ExecutionReport>>(
+      `${this.BASE_URL}/dashboard/executions_by_report`,
       { params }
     );
   }

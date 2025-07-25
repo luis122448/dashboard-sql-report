@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExecutionHistoryTableComponent } from './execution-history-table.component';
+import { LastExecutionHistoryTableComponent } from './execution-history-table.component';
 
-describe('ExecutionHistoryTableComponent', () => {
-  let component: ExecutionHistoryTableComponent;
-  let fixture: ComponentFixture<ExecutionHistoryTableComponent>;
+describe('LastExecutionHistoryTableComponent', () => {
+  let component: LastExecutionHistoryTableComponent;
+  let fixture: ComponentFixture<LastExecutionHistoryTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExecutionHistoryTableComponent]
+      imports: [LastExecutionHistoryTableComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ExecutionHistoryTableComponent);
+    fixture = TestBed.createComponent(LastExecutionHistoryTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TotalScheduledCardComponent } from '../total-scheduled-card/total-scheduled-card.component';
 import { TopUsageChartComponent } from '../top-usage-chart/top-usage-chart.component';
-import { ExecutionHistoryTableComponent } from '../execution-history-table/execution-history-table.component';
+import { LastExecutionHistoryTableComponent } from '../execution-history-table/execution-history-table.component';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { FilterService } from '../../services/filter.service';
   imports: [
     TotalScheduledCardComponent,
     TopUsageChartComponent,
-    ExecutionHistoryTableComponent,
+    LastExecutionHistoryTableComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
