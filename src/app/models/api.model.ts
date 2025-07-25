@@ -42,7 +42,7 @@ export interface ExecutionReport {
     object_name: string;
     last_exec: string;
     processing_time_ms: number;
-    satus: string;
+    status: string;
     error_message: string;
 }
 

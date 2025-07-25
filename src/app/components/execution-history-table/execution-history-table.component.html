@@ -20,7 +20,8 @@
       <tbody>
         <tr
           *ngFor="let execution of LastExecutionHistory"
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg cursor-pointer transition-shadow duration-200"
+          (click)="onRowClick(execution)"
         >
           <td
             class="px-2 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"

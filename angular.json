@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/styles-layout.css"
+              "src/styles-layout.css",
+              "@angular/cdk/overlay-prebuilt.css"
             ],
             "scripts": [
               "node_modules/flowbite/dist/flowbite.min.js"
@@ -101,7 +102,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/styles-layout.css"
+              "src/styles-layout.css",
+              "@angular/cdk/overlay-prebuilt.css"
             ],
             "scripts": [
               "node_modules/flowbite/dist/flowbite.min.js"

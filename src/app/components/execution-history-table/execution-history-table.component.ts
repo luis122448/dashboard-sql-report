@@ -7,6 +7,13 @@ import { SecondsConverterPipe } from '../../pipe/seconds-converter.pipe';
 import { MinutesToHoursConverterPipe } from '../../pipe/minutes-to-hours-converter.pipe';
 import { MiliSecondsConverterPipe } from '../../pipe/mili-seconds-converter.pipe';
 import { SubtractFiveHoursPipe } from '../../pipe/subtract-five-hours.pipe';
+import { Dialog } from '@angular/cdk/dialog';
+import { ExecutionHistoryModalComponent } from '../execution-history-modal/execution-history-modal.component';
+
+export interface DialogData {
+  id_cia: number;
+  id_report: number;
+}
 
 @Component({
   selector: 'app-execution-history-table',
@@ -18,18 +25,29 @@ import { SubtractFiveHoursPipe } from '../../pipe/subtract-five-hours.pipe';
 export class LastExecutionHistoryTableComponent implements OnInit {
   LastExecutionHistory: LastExecutionHistory[] = [];
 
+  private id_cia: number | null = null;
+
   constructor(
     private apiService: ApiService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private dialog: Dialog
   ) {}
 
   ngOnInit(): void {
     this.filterService.selectedCompanyId$.subscribe((id_cia) => {
+      this.id_cia = id_cia;
       this.apiService
         .getLastExecutionDetails(id_cia)
         .subscribe((response) => {
           this.LastExecutionHistory = response.list;
         });
     });
+  }
+
+  onRowClick(execution: LastExecutionHistory) {
+    this.dialog.open<String>(ExecutionHistoryModalComponent, {
+      width: '750px',
+      data: {id_cia: execution.id_cia, id_report: execution.id_report}
+    })
   }
 }
