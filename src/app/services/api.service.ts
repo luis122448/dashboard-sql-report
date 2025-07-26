@@ -9,6 +9,8 @@ import {
   TopReport,
   CompanyStatus,
   ExecutionReport,
+  ApiResponseObject,
+  ApiResponse,
 } from '../models/api.model';
 
 @Injectable({
@@ -39,6 +41,18 @@ export class ApiService {
   }
 
   getExecutionsByReport(id_cia: number, id_report: number): Observable<ApiResponseList<ExecutionReport>> {
+    let params = new HttpParams();
+    if (id_cia) {
+      params = params.append('id_cia', id_cia);
+      params = params.append('id_report', id_report);
+    }
+    return this.http.get<ApiResponseList<ExecutionReport>>(
+      `${this.BASE_URL}/dashboard/executions_by_report`,
+      { params }
+    );
+  }
+
+  postForceRun(id_cia: number, id_report: number): Observable<ApiResponse> {
     let params = new HttpParams();
     if (id_cia) {
       params = params.append('id_cia', id_cia);

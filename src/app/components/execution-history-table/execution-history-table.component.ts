@@ -9,6 +9,8 @@ import { MiliSecondsConverterPipe } from '../../pipe/mili-seconds-converter.pipe
 import { SubtractFiveHoursPipe } from '../../pipe/subtract-five-hours.pipe';
 import { Dialog } from '@angular/cdk/dialog';
 import { ExecutionHistoryModalComponent } from '../execution-history-modal/execution-history-modal.component';
+import { UrlModalComponent } from '../url-modal/url-modal.component';
+import { environment } from '../../../environments/environment';
 
 export interface DialogData {
   id_cia: number;
@@ -49,5 +51,17 @@ export class LastExecutionHistoryTableComponent implements OnInit {
       width: '750px',
       data: {id_cia: execution.id_cia, id_report: execution.id_report}
     })
+  }
+
+  showApiUrl(execution: LastExecutionHistory) {
+    const apiUrl = `${environment.API_URL}/api/reports/last/${execution.id_report}`;
+    this.dialog.open(UrlModalComponent, {
+      width: '900px',
+      data: { apiUrl }
+    });
+  }
+
+  forceRun(execution: LastExecutionHistory) {
+    this.apiService.postForceRun(execution.id_cia, execution.id_report).subscribe();
   }
 }

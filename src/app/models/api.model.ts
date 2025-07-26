@@ -1,3 +1,8 @@
+export interface ApiResponse {
+    status: number;
+    message: string;
+}
+
 export interface ApiResponseObject<T> {
     status: number;
     message: string;

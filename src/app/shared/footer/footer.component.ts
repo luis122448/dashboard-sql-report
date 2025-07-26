@@ -18,6 +18,8 @@ export class FooterComponent {
   stackTechs: string[] = [
     "angular",
     "tailwindcss",
+    "python",
+    "sqlite",
     "docker",
   ]
 

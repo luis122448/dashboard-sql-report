@@ -8,6 +8,7 @@
         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       >
         <tr>
+          <th scope="col" class="px-2 py-3">Actions</th>
           <th scope="col" class="px-2 py-3">Id</th>
           <th scope="col" class="px-2 py-3">Report Name</th>
           <th scope="col" class="px-2 py-3">Schedule Type</th>
@@ -20,9 +21,21 @@
       <tbody>
         <tr
           *ngFor="let execution of LastExecutionHistory"
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg cursor-pointer transition-shadow duration-200"
-          (click)="onRowClick(execution)"
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg transition-shadow duration-200"
         >
+          <td class="px-2 py-2">
+            <div class="flex space-x-2">
+              <button (click)="showApiUrl(execution)" class="p-1 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+              </button>
+              <button (click)="forceRun(execution)" class="p-1 bg-green-500 text-white rounded-md hover:bg-green-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 9a9 9 0 0114.13-6.36M20 15a9 9 0 01-14.13 6.36" /></svg>
+              </button>
+              <button (click)="onRowClick(execution)" class="p-1 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+              </button>
+            </div>
+          </td>
           <td
             class="px-2 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
           >
